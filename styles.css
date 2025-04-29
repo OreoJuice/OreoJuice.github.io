@@ -199,10 +199,9 @@ a{
     font-size: 10px;
 }
 
-.grid{
+.grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     place-items: center;
     gap: 15px;
     width: 100%;
@@ -311,4 +310,14 @@ a{
     color: #E4E4E8;
     font-family: "Montserrat";
     font-size: clamp(1.3rem, 20px, 5rem);
+}
+
+.grid4r1c{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, minmax(100px, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
