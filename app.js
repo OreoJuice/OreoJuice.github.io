@@ -2,12 +2,12 @@ function setupLogoClicks() {
     let clickCount = 0;
     const logoButton = document.getElementById('logo-button');
 
-    if (!logoButton) return; // safety check
+    if (!logoButton) return;
 
     logoButton.addEventListener('click', () => {
         clickCount++;
         if (clickCount === 12) {
-            window.location.href = 'secret.html'; // Change to your target page
+            window.location.href = 'secret.html';
         }
     });
 }
@@ -17,8 +17,6 @@ function setupLogoClicks() {
 function setupCarousel(root) {
     const viewport = root.querySelector('.carousel-viewport');
     const track = root.querySelector('.carousel-track');
-    const prevButton = root.querySelector('.carousel-prev');
-    const nextButton = root.querySelector('.carousel-next');
     const pauseButton = root.querySelector('.carousel-pause');
     const originals = Array.from(track.children);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -27,32 +25,39 @@ function setupCarousel(root) {
     let offset = 0;   // how far the strip has moved left
     let setWidth = 0; // width of one full copy of the items (incl. gap)
     let step = 0;     // one tile + gap
+    let copies = 0;
     let userPaused = false;
     let hovering = false;
     let focused = false;
     let dragging = false;
+    let visible = false;
     let glide = null; // arrow-button animation in progress
+    let frame = 0;    // pending animation frame, 0 while the loop is asleep
     let lastTime = null;
 
     const wrap = (x) => ((x % setWidth) + setWidth) % setWidth;
 
     // copies of the items so the strip never runs out; hidden from screen readers and tabbing
-    function fill() {
-        track.querySelectorAll('[data-clone]').forEach((el) => el.remove());
-
+    function measure() {
         const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
         step = originals[0].getBoundingClientRect().width + gap;
         setWidth = step * originals.length;
 
-        const copies = Math.ceil(viewport.clientWidth / setWidth) + 1;
-        for (let i = 0; i < copies; i++) {
-            originals.forEach((item) => {
-                const clone = item.cloneNode(true);
-                clone.dataset.clone = '';
-                clone.setAttribute('aria-hidden', 'true');
-                clone.tabIndex = -1;
-                track.appendChild(clone);
-            });
+        const needed = Math.ceil(viewport.clientWidth / setWidth) + 1;
+        if (needed !== copies) {
+            track.querySelectorAll('[data-clone]').forEach((el) => el.remove());
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < needed; i++) {
+                originals.forEach((item) => {
+                    const clone = item.cloneNode(true);
+                    clone.dataset.clone = '';
+                    clone.setAttribute('aria-hidden', 'true');
+                    clone.tabIndex = -1;
+                    fragment.appendChild(clone);
+                });
+            }
+            track.appendChild(fragment);
+            copies = needed;
         }
         render();
     }
@@ -65,7 +70,16 @@ function setupCarousel(root) {
         return !userPaused && !hovering && !focused && !dragging && !reducedMotion.matches;
     }
 
+    // the loop only runs while the strip is on screen and something is moving
+    function wake() {
+        if (!frame && visible && (glide || autoScrolling())) {
+            lastTime = null;
+            frame = requestAnimationFrame(tick);
+        }
+    }
+
     function tick(time) {
+        frame = 0;
         const dt = lastTime === null ? 0 : (time - lastTime) / 1000;
         lastTime = time;
 
@@ -79,10 +93,12 @@ function setupCarousel(root) {
             }
         } else if (autoScrolling()) {
             offset += SPEED * Math.min(dt, 0.1);
+        } else {
+            return; // nothing moving: sleep until wake()
         }
 
         render();
-        requestAnimationFrame(tick);
+        if (visible) frame = requestAnimationFrame(tick);
     }
 
     // arrows move one tile, landing on a tile edge
@@ -95,22 +111,24 @@ function setupCarousel(root) {
             start: performance.now(),
             duration: reducedMotion.matches ? 1 : 400,
         };
+        wake();
     }
 
-    prevButton.addEventListener('click', () => move(-1));
-    nextButton.addEventListener('click', () => move(1));
+    root.querySelector('.carousel-prev').addEventListener('click', () => move(-1));
+    root.querySelector('.carousel-next').addEventListener('click', () => move(1));
 
+    pauseButton.hidden = reducedMotion.matches;
     pauseButton.addEventListener('click', () => {
         userPaused = !userPaused;
         pauseButton.textContent = userPaused ? 'Play' : 'Pause';
         pauseButton.setAttribute('aria-pressed', String(userPaused));
+        wake();
     });
-    if (reducedMotion.matches) pauseButton.hidden = true;
 
     viewport.addEventListener('mouseenter', () => { hovering = true; });
-    viewport.addEventListener('mouseleave', () => { hovering = false; });
+    viewport.addEventListener('mouseleave', () => { hovering = false; wake(); });
     root.addEventListener('focusin', () => { focused = true; });
-    root.addEventListener('focusout', () => { focused = false; });
+    root.addEventListener('focusout', () => { focused = false; wake(); });
 
     // tabbing to a tile: keep the browser from scrolling the viewport, and slide the tile into view instead
     track.addEventListener('focusin', (event) => {
@@ -119,9 +137,10 @@ function setupCarousel(root) {
         if (!item || !item.matches(':focus-visible')) return;
         glide = null;
         offset = wrap(item.offsetLeft - (viewport.clientWidth - item.offsetWidth) / 2);
+        render();
     });
 
-    // swipe / drag
+    // swipe / drag; the pointer is only captured once it's clearly a drag, so plain clicks still open links
     let dragStartX = 0;
     let dragStartOffset = 0;
     let dragMoved = false;
@@ -135,23 +154,29 @@ function setupCarousel(root) {
         dragStartOffset = offset;
     });
 
-    window.addEventListener('pointermove', (event) => {
+    viewport.addEventListener('pointermove', (event) => {
         if (!dragging) return;
         const dx = event.clientX - dragStartX;
-        if (Math.abs(dx) > 5 && !dragMoved) {
+        if (!dragMoved && Math.abs(dx) > 5) {
             dragMoved = true;
+            viewport.setPointerCapture(event.pointerId);
             viewport.classList.add('dragging');
         }
-        if (dragMoved) offset = dragStartOffset - dx;
+        if (dragMoved) {
+            offset = dragStartOffset - dx;
+            render();
+        }
     });
 
     function endDrag() {
         if (!dragging) return;
         dragging = false;
         viewport.classList.remove('dragging');
+        wake();
     }
-    window.addEventListener('pointerup', endDrag);
-    window.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('pointerleave', () => { if (!dragMoved) endDrag(); });
 
     // a drag shouldn't also open the link under the pointer
     track.addEventListener('click', (event) => {
@@ -162,18 +187,15 @@ function setupCarousel(root) {
     });
     track.addEventListener('dragstart', (event) => event.preventDefault());
 
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(fill, 150);
+    new ResizeObserver(measure).observe(viewport);
+    new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        wake();
+    }).observe(root);
+    reducedMotion.addEventListener('change', () => {
+        pauseButton.hidden = reducedMotion.matches;
+        wake();
     });
-
-    fill();
-    requestAnimationFrame(tick);
-}
-
-function setupCarousels() {
-    document.querySelectorAll('[data-carousel]').forEach(setupCarousel);
 }
 
 
@@ -222,7 +244,7 @@ function setupContactForm() {
 }
 
 
-// Run the functions when the page is ready
-document.addEventListener('DOMContentLoaded', setupLogoClicks);
-document.addEventListener('DOMContentLoaded', setupCarousels);
-document.addEventListener('DOMContentLoaded', setupContactForm);
+// app.js is loaded with defer, so the page is already parsed when this runs
+setupLogoClicks();
+document.querySelectorAll('[data-carousel]').forEach(setupCarousel);
+setupContactForm();
