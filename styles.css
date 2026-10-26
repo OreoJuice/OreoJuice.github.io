@@ -280,26 +280,95 @@ a img {
 }
 
 /* Gaming + music cover tiles */
-.gridVG,
-.gridMusic {
-    --cols: 5;
+/* endless strip, moved by app.js; arrows + pause for keyboard / screen readers */
+.carousel {
+    --tile: clamp(110px, 20vw, 200px);
+    --gap: clamp(8px, 2vw, 15px);
     display: grid;
-    grid-template-columns: repeat(var(--cols), 1fr);
-    gap: clamp(8px, 2vw, 15px);
+    /* minmax(0, …) so the long track can't widen the middle column */
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(4px, 1.5vw, 12px);
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.gridVG a,
-.gridMusic a {
+.carousel-viewport {
+    overflow: hidden;
+    /* room for the hover zoom + shadow */
+    padding: 12px 0;
+    touch-action: pan-y;
+    cursor: grab;
+}
+
+.carousel-viewport.dragging {
+    cursor: grabbing;
+}
+
+.carousel-track {
+    position: relative;
+    display: flex;
+    gap: var(--gap);
+    width: max-content;
+    will-change: transform;
+}
+
+.carousel-track a {
     display: block;
+    flex: 0 0 var(--tile);
     aspect-ratio: 1 / 1;
 }
 
-.gridVG img,
-.gridMusic img {
+.carousel-track img {
     box-shadow: var(--shadow);
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.carousel-btn {
+    display: grid;
+    place-items: center;
+    width: clamp(32px, 8vw, 44px);
+    height: clamp(32px, 8vw, 44px);
+    padding: 0 0 4px;
+    background-color: var(--pink);
+    color: var(--rose);
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 6vw, 32px);
+    line-height: 1;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 4px rgba(229, 178, 195, 0.25);
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.carousel-pause {
+    grid-column: 1 / -1;
+    justify-self: center;
+    padding: 4px 14px;
+    background: none;
+    color: var(--pink);
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: 2px solid var(--pink);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.carousel-btn:hover,
+.carousel-pause:hover {
+    filter: brightness(1.08);
+}
+
+.carousel-btn:focus-visible,
+.carousel-pause:focus-visible,
+.carousel-track a:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
 }
 
 /* Contact links */
@@ -373,13 +442,6 @@ a img {
 /* ==========================================================
    Breakpoints
    ========================================================== */
-@media (max-width: 900px) {
-    .gridVG,
-    .gridMusic {
-        --cols: 4;
-    }
-}
-
 @media (max-width: 700px) {
     .grid2x1,
     .gridEdu,
@@ -398,11 +460,6 @@ a img {
 
     .home-photo {
         max-width: 320px;
-    }
-
-    .gridVG,
-    .gridMusic {
-        --cols: 3;
     }
 
     /* project collages stay 2-up on phones */
