@@ -371,6 +371,13 @@ a img {
     outline-offset: 2px;
 }
 
+a.playlist-link:link,
+a.playlist-link:visited {
+    color: var(--pink);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 /* Contact links */
 .grid4r1c {
     display: grid;
@@ -388,6 +395,93 @@ a img {
 
 .grid4r1c h1 {
     font-size: clamp(16px, 5.2vw, 30px);
+}
+
+/* Contact form (opens the visitor's mail app) */
+.contact-form-section {
+    width: 100%;
+    max-width: 600px;
+    margin: clamp(24px, 5vw, 40px) auto 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.contact-form label {
+    margin-top: 8px;
+    color: var(--pink);
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 700;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #3d3d3c;
+    color: var(--text);
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 16px; /* 16px+ keeps iOS from zooming in */
+    border: 2px solid var(--pink);
+    border-radius: 12px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible,
+.contact-submit:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+}
+
+.contact-submit {
+    align-self: center;
+    margin-top: 16px;
+    padding: 10px 28px;
+    background-color: var(--pink);
+    color: var(--rose);
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px rgba(229, 178, 195, 0.25);
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.contact-submit:hover {
+    filter: brightness(1.08);
+}
+
+.contact-submit:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.contact-status {
+    margin: 4px auto 0;
+    font-size: 15px;
+}
+
+.contact-status:empty {
+    display: none;
+}
+
+.contact-status.error {
+    color: var(--pink);
+}
+
+.contact-honeypot {
+    position: absolute;
+    left: -9999px;
 }
 
 /* Projects */

@@ -177,6 +177,52 @@ function setupCarousels() {
 }
 
 
+// Contact page: send the form to Formspree without leaving the page
+function setupContactForm() {
+    const form = document.getElementById('contact-form');
+
+    if (!form) return;
+
+    const submitButton = form.querySelector('.contact-submit');
+    const status = form.querySelector('.contact-status');
+
+    function showStatus(text, isError) {
+        status.textContent = text;
+        status.classList.toggle('error', isError);
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+        showStatus('', false);
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { Accept: 'application/json' },
+            });
+
+            if (response.ok) {
+                form.reset();
+                showStatus('Thanks! Your message was sent. I\'ll get back to you soon.', false);
+            } else {
+                const result = await response.json().catch(() => ({}));
+                const details = (result.errors || []).map((e) => e.message).join(' ');
+                showStatus(details || 'Something went wrong. Please try again, or message me on LinkedIn.', true);
+            }
+        } catch {
+            showStatus('Couldn\'t reach the server. Check your connection, or message me on LinkedIn.', true);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Message';
+        }
+    });
+}
+
+
 // Run the functions when the page is ready
 document.addEventListener('DOMContentLoaded', setupLogoClicks);
 document.addEventListener('DOMContentLoaded', setupCarousels);
+document.addEventListener('DOMContentLoaded', setupContactForm);
