@@ -2,45 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>About.</title>
-    <link rel="shortcut icon" type="image/png" href="favicon-32x32.png">
+    <meta name="description" content="Matt — software developer and problem solver. Projects, background, and contact info.">
+    <meta name="theme-color" content="#323231">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sriracha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&family=Montserrat:wght@400;700&family=Sriracha&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
-
+    <script src="app.js" defer></script>
 </head>
 
 <body>
-    
-    <div class="header">
-        <div class="header-buttons-container">
-            <button id="logo-button" class="header-image-button">
-                <img src="images/Icon_Skill_ak12_buff.png" alt="Logo" class="header-image">
+
+    <header class="header">
+        <nav class="header-buttons-container" aria-label="Main">
+            <button id="logo-button" class="header-image-button" type="button" aria-label="Logo">
+                <img src="images/Icon_Skill_ak12_buff.png" alt="" width="100" height="100" class="header-image">
             </button>
-    
-            <a href="index.html">
-                <button class="header-button">Home</button>
-            </a>
-            
-            <a href="about.html">
-                <button class="header-button">About</button>
-            </a>
 
-            <a href="projects.html">
-                <button class="header-button">Projects</button>
-            </a>
+            <a href="index.html" class="header-button">Home</a>
+            <a href="about.html" class="header-button" aria-current="page">About</a>
+            <a href="projects.html" class="header-button">Projects</a>
+            <a href="contact.html" class="header-button">Contact</a>
+        </nav>
+    </header>
 
-            <a href="contact.html">
-                <button class="header-button">Contact</button>
-            </a>
-        </div>
-    </div>
-    
-    <div id="page-content">
+    <main id="page-content">
 
         <div class="invis-container">
             <p>I am a Rutgers University Class of 2024 spring graduate with a B.S. in Computer Science.
@@ -48,7 +40,7 @@
                 Currently looking for employment or an internship within the comp sci field, whether that be frontend or backend development.
             </p>
         </div>
-    
+
         <div class="invis-container">
             <h1>Skills</h1>
         </div>
@@ -58,50 +50,48 @@
             <div class="gridText">Java</div>
             <div class="gridText">C</div>
             <div class="gridText">HTML, CSS, JavaScript <br> (This Website!)</div>
-
             <div class="gridText">AI and Machine Learning <br> (Pytorch)</div>
             <div class="gridText">Data Analysis <br> (Numpy / Pandas)</div>
             <div class="gridText">MS Office</div>
             <div class="gridText">Adobe Photoshop and Premiere Pro</div>
-
             <div class="gridText">Hand-Eye Coordination</div>
             <div class="gridText">Time Sensitive Decision Making</div>
             <div class="gridText">Ability to Motivate</div>
             <div class="gridText">Customer Satisfaction</div>
         </div>
-    
+
         <div class="invis-container">
             <h1>Education</h1>
         </div>
 
         <div class="gridEdu">
-            <div class="gridText"> St. Joseph High School, Metuchen <br> (2015 - 2019) </div>
+            <div class="gridText">St. Joseph High School, Metuchen <br> (2015 - 2019)</div>
             <a href="https://www.stjoes.org/">
-                <img src="images/educationSection/sjhs.png" alt="hs">
+                <img src="images/educationSection/sjhs.webp" alt="St. Joseph High School" width="225" height="225" loading="lazy" decoding="async">
             </a>
 
-            <div class="gridText">Rutgers University, New Brunswick <br> (2019 - 2024) </div>
+            <div class="gridText">Rutgers University, New Brunswick <br> (2019 - 2024)</div>
             <a href="https://www.rutgers.edu/">
-                <img src="images/educationSection/rutgers.jpg" alt="college">
+                <img src="images/educationSection/rutgers.webp" alt="Rutgers University" width="225" height="225" loading="lazy" decoding="async">
             </a>
         </div>
-    
+
         <div class="invis-container">
             <h1>Experience</h1>
         </div>
 
         <div class="gridEdu">
             <a href="https://rutgers.campuslabs.com/engage/organization/rgc">
-                <img src="images/experienceSection/rgc.jpg" alt="rgc" class="rgcImg">
+                <img src="images/experienceSection/rgc.webp" alt="Rutgers Rhythm Games Club" width="170" height="170" loading="lazy" decoding="async" class="rgcImg">
             </a>
-            <div class="gridText"> Rutgers Rhythm Games Club Secretary <br> (2023 - 2024)</div>
+            <div class="gridText">Rutgers Rhythm Games Club Secretary <br> (2023 - 2024)</div>
 
             <a href="https://www.gatcha.us/">
-                <img src="images/experienceSection/gatcha.png" alt="gatcha" class="gatchaImg">
+                <img src="images/experienceSection/gatcha.webp" alt="Gatcha" width="600" height="429" loading="lazy" decoding="async" class="gatchaImg">
             </a>
-            <div class="gridText"> Gatcha of Menlo Park Team Member <br> (2024 - Current)</div>
+            <div class="gridText">Gatcha of Menlo Park Team Member <br> (2024 - Current)</div>
         </div>
-    
+
         <div class="invis-container">
             <h1>Hobbies and Interests</h1>
         </div>
@@ -115,27 +105,21 @@
         </div>
 
         <div class="gridVG">
-
             <a href="https://en.wikipedia.org/wiki/Counter-Strike_2">
-                <img src="images/gamingSection/cs2.jpg" alt="cs2">
+                <img src="images/gamingSection/cs2.webp" alt="Counter-Strike 2" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://en.wikipedia.org/wiki/Honkai:_Star_Rail">
-                <img src="images/gamingSection/hsr.png" alt="hsr">
+                <img src="images/gamingSection/hsr.webp" alt="Honkai: Star Rail" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://en.wikipedia.org/wiki/Girls%27_Frontline">
-                <img src="images/gamingSection/gfl.png" alt="gfl">
+                <img src="images/gamingSection/gfl.webp" alt="Girls' Frontline" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://en.wikipedia.org/wiki/Blue_Archive">
-                <img src="images/gamingSection/ba.png" alt="ba">
+                <img src="images/gamingSection/ba.webp" alt="Blue Archive" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://en.wikipedia.org/wiki/Maimai_(video_game_series)">
-                <img src="images/gamingSection/maimaiLogo.jpg" alt="maimai">
+                <img src="images/gamingSection/maimaiLogo.webp" alt="maimai" width="225" height="225" loading="lazy" decoding="async">
             </a>
-
         </div>
 
         <div class="invis-container">
@@ -143,77 +127,56 @@
         </div>
 
         <div class="gridMusic">
-
             <a href="https://www.youtube.com/watch?v=DIicSsVwnjU">
-                <img src="images/musicSection/mystique.png" alt="mystique">
+                <img src="images/musicSection/mystique.webp" alt="mystique" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=ELSUh04-Jh4">
-                <img src="images/musicSection/uzi.jpg" alt="uzi">
+                <img src="images/musicSection/uzi.webp" alt="uzi" width="300" height="300" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=IwHwv-lcxi4">
-                <img src="images/musicSection/btr.png" alt="btr">
+                <img src="images/musicSection/btr.webp" alt="btr" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=DUT5rEU6pqM">
-                <img src="images/musicSection/shakira.jpg" alt="shakira">
+                <img src="images/musicSection/shakira.webp" alt="shakira" width="316" height="316" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=kEAsNxcIGKM">
-                <img src="images/musicSection/vektor.jpg" alt="vektor">
+                <img src="images/musicSection/vektor.webp" alt="vektor" width="316" height="316" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=nnpyIv4wGeQ">
-                <img src="images/musicSection/abstruse.jpg" alt="abstruse">
+                <img src="images/musicSection/abstruse.webp" alt="abstruse" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=2a-AK_39xg8">
-                <img src="images/musicSection/carti.png" alt="carti">
+                <img src="images/musicSection/carti.webp" alt="carti" width="300" height="300" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=YGkr5JE9xGY">
-                <img src="images/musicSection/gbc.jpg" alt="gbc">
+                <img src="images/musicSection/gbc.webp" alt="gbc" width="380" height="380" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=WHuBW3qKm9g">
-                <img src="images/musicSection/lupa.png" alt="lupa">
+                <img src="images/musicSection/lupa.webp" alt="lupa" width="344" height="344" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=qyYmS_iBcy4">
-                <img src="images/musicSection/lorna.jpg" alt="lorna">
+                <img src="images/musicSection/lorna.webp" alt="lorna" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=BJU0E1KHjzk">
-                <img src="images/musicSection/cryptarithm.png" alt="cryptarithm">
+                <img src="images/musicSection/cryptarithm.webp" alt="cryptarithm" width="400" height="400" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=VAybGW3DI9Q">
-                <img src="images/musicSection/youngThug.jpg" alt="yt">
+                <img src="images/musicSection/youngThug.webp" alt="Young Thug" width="316" height="316" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=eTO7i_GEUpI">
-                <img src="images/musicSection/yani.jpg" alt="yanaginagi">
+                <img src="images/musicSection/yani.webp" alt="yanaginagi" width="400" height="384" loading="lazy" decoding="async">
             </a>
-
             <a href="https://www.youtube.com/watch?v=f9imDgsjxXc">
-                <img src="images/musicSection/brunoMars.jpg" alt="brunoMars">
+                <img src="images/musicSection/brunoMars.webp" alt="Bruno Mars" width="300" height="300" loading="lazy" decoding="async">
             </a>
-
-            <a href="https://www.youtube.com/watch?v=r1x47f-VsL0&list=OLAK5uy_mvO5iHhNNMUvhIsytciYeZfcL0ghpDl90&index=2">
-                <img src="images/musicSection/obliv.jpg" alt="NeObliviscaris">
+            <a href="https://www.youtube.com/watch?v=r1x47f-VsL0&amp;list=OLAK5uy_mvO5iHhNNMUvhIsytciYeZfcL0ghpDl90&amp;index=2">
+                <img src="images/musicSection/obliv.webp" alt="Ne Obliviscaris" width="400" height="400" loading="lazy" decoding="async">
             </a>
         </div>
-    
-        <br><br>
 
-    </div>
+    </main>
 
-    <footer class="footer">last updated April 28, 2025</footer>
-
-    <script src="app.js"></script>
+    <footer class="footer">last updated October 26, 2026</footer>
 
 </body>
-
-
 </html>

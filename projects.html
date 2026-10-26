@@ -2,101 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Projects.</title>
-    <link rel="shortcut icon" type="image/png" href="favicon-32x32.png">
+    <meta name="description" content="Matt — software developer and problem solver. Projects, background, and contact info.">
+    <meta name="theme-color" content="#323231">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sriracha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&family=Montserrat:wght@400;700&family=Sriracha&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
-
+    <script src="app.js" defer></script>
 </head>
 
 <body>
-    
-    <div class="header">
-        <div class="header-buttons-container">
-            <button id="logo-button" class="header-image-button">
-                <img src="images/Icon_Skill_ak12_buff.png" alt="Logo" class="header-image">
+
+    <header class="header">
+        <nav class="header-buttons-container" aria-label="Main">
+            <button id="logo-button" class="header-image-button" type="button" aria-label="Logo">
+                <img src="images/Icon_Skill_ak12_buff.png" alt="" width="100" height="100" class="header-image">
             </button>
-    
-            <a href="index.html">
-                <button class="header-button">Home</button>
-            </a>
-            
-            <a href="about.html">
-                <button class="header-button">About</button>
-            </a>
 
-            <a href="projects.html">
-                <button class="header-button">Projects</button>
-            </a>
+            <a href="index.html" class="header-button">Home</a>
+            <a href="about.html" class="header-button">About</a>
+            <a href="projects.html" class="header-button" aria-current="page">Projects</a>
+            <a href="contact.html" class="header-button">Contact</a>
+        </nav>
+    </header>
 
-            <a href="contact.html">
-                <button class="header-button">Contact</button>
-            </a>
-        </div>
-    </div>
+    <main id="page-content">
 
-    <div id="page-content">
+        <div class="projects">
 
-        <br><br>
-
-        <div class="gridPortfolio">
-
-            <div class="gridText"> <h1>hackRU Lifestyle App</h1>
-                <br> Developed with a team of 3 others for a hackathon, this is a healthy lifestyle app which enables people to better plan their day based on a weather api and xml data. Utilized persistent data and json serialization with help from the GSON library. Made with Android Studio
-            </div>
-
-            <a href="https://github.com/OreoJuice/hackRU4Stack?tab=readme-ov-file">
-                <img src="images/portfolioSection/hackRU.jpg" alt="hackRU app">
-            </a>
-
-            <div class="gridText"> <h1>Face and Digit Classification (Private)</h1>
-                <br> Basic 2 layer neural network and perceptron coded in Python to perform optical character recognition on face images and handwritten digits with varying data sizes.
-                <br> Results: In general, larger data sizes result in longer training times, but higher accuracy. Smaller data sizes result in shorter training times, but lower accuracy.
-                <br> Diminishing returns in accuracy after a certain data size shows that more data points doesn't mean better accuracy and wastes time and resources to train the network. 
-            </div>
-
-            <a href="https://github.com/OreoJuice/IntroAIFinalProject">
-                <div class="gridEdu">
-                    <img src="images/portfolioSection/figure1.png" alt="fig1">
-                    <img src="images/portfolioSection/figure2.png" alt="fig2">
-                    <img src="images/portfolioSection/figure3.png" alt="fig3">
-                    <img src="images/portfolioSection/figure4.png" alt="fig4">
+            <section class="project">
+                <div class="gridText project-text">
+                    <h1>hackRU Lifestyle App</h1>
+                    Developed with a team of 3 others for a hackathon, this is a healthy lifestyle app which enables people to better plan their day based on a weather api and xml data. Utilized persistent data and json serialization with help from the GSON library. Made with Android Studio
                 </div>
-            </a>
+                <a class="project-media" href="https://github.com/OreoJuice/hackRU4Stack?tab=readme-ov-file">
+                    <img src="images/portfolioSection/hackRU.webp" alt="hackRU app" width="680" height="900" loading="lazy" decoding="async">
+                </a>
+            </section>
 
-            <a href="https://github.com/OreoJuice/GFL-Character-Dialogue-Extract">
-                <div class="grid2x1">
-                    <img src="images/portfolioSection/extract.PNG" alt="extract">
-                    <img src="images/portfolioSection/ak12.png" alt="AK12">
+            <section class="project">
+                <div class="gridText project-text">
+                    <h1>Face and Digit Classification (Private)</h1>
+                    Basic 2 layer neural network and perceptron coded in Python to perform optical character recognition on face images and handwritten digits with varying data sizes.
+                    <br><br> Results: In general, larger data sizes result in longer training times, but higher accuracy. Smaller data sizes result in shorter training times, but lower accuracy.
+                    <br><br> Diminishing returns in accuracy after a certain data size shows that more data points doesn't mean better accuracy and wastes time and resources to train the network.
                 </div>
-            </a>
+                <a class="project-media" href="https://github.com/OreoJuice/IntroAIFinalProject">
+                    <div class="gridEdu">
+                        <img src="images/portfolioSection/figure1.webp" alt="Figure 1" width="900" height="540" loading="lazy" decoding="async">
+                        <img src="images/portfolioSection/figure2.webp" alt="Figure 2" width="900" height="540" loading="lazy" decoding="async">
+                        <img src="images/portfolioSection/figure3.webp" alt="Figure 3" width="900" height="540" loading="lazy" decoding="async">
+                        <img src="images/portfolioSection/figure4.png" alt="Figure 4" width="461" height="302" loading="lazy" decoding="async">
+                    </div>
+                </a>
+            </section>
 
-            <div class="gridText"> <h1>Per-character Dialogue Extract </h1>
-                <br> Python code to extract dialogue spoken by a specified character from the hit gatcha game Girl's Frontline.
-                <br> Takes input from txt files and outputs both a txt and csv file of character dialogue. Can be run from an exe file
-            </div>
+            <section class="project reverse">
+                <div class="gridText project-text">
+                    <h1>Per-character Dialogue Extract</h1>
+                    Python code to extract dialogue spoken by a specified character from the hit gatcha game Girl's Frontline.
+                    <br><br> Takes input from txt files and outputs both a txt and csv file of character dialogue. Can be run from an exe file
+                </div>
+                <a class="project-media" href="https://github.com/OreoJuice/GFL-Character-Dialogue-Extract">
+                    <div class="grid2x1">
+                        <img src="images/portfolioSection/extract.webp" alt="Extracted dialogue output" width="376" height="348" loading="lazy" decoding="async">
+                        <img src="images/portfolioSection/ak12.webp" alt="AK-12" width="900" height="782" loading="lazy" decoding="async">
+                    </div>
+                </a>
+            </section>
 
-            <a href="#">
-                <img src="images/portfolioSection/website.PNG" alt="website">
-            </a>
-
-            <div class="gridText"> <h1>Personal Portfolio Website</h1>
-                <br> Weekend project to learn basic HTML, CSS, and JavaScript. Will probably recreate with React
-            </div>
+            <section class="project reverse">
+                <div class="gridText project-text">
+                    <h1>Personal Portfolio Website</h1>
+                    Weekend project to learn basic HTML, CSS, and JavaScript. Will probably recreate with React
+                </div>
+                <a class="project-media" href="index.html">
+                    <img src="images/portfolioSection/website.webp" alt="This website" width="673" height="531" loading="lazy" decoding="async">
+                </a>
+            </section>
 
         </div>
-    
-    </div>  
 
-    <footer class="footer">last updated April 28, 2025</footer>
+    </main>
 
-    <script src="app.js"></script>
+    <footer class="footer">last updated October 26, 2026</footer>
 
 </body>
-
 </html>

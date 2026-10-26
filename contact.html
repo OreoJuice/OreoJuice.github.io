@@ -2,51 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Contact.</title>
-    <link rel="shortcut icon" type="image/png" href="favicon-32x32.png">
+    <meta name="description" content="Matt — software developer and problem solver. Projects, background, and contact info.">
+    <meta name="theme-color" content="#323231">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sriracha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&family=Montserrat:wght@400;700&family=Sriracha&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
-
+    <script src="app.js" defer></script>
 </head>
 
 <body>
-    
-    <div class="header">
-        <div class="header-buttons-container">
-            <button id="logo-button" class="header-image-button">
-                <img src="images/Icon_Skill_ak12_buff.png" alt="Logo" class="header-image">
+
+    <header class="header">
+        <nav class="header-buttons-container" aria-label="Main">
+            <button id="logo-button" class="header-image-button" type="button" aria-label="Logo">
+                <img src="images/Icon_Skill_ak12_buff.png" alt="" width="100" height="100" class="header-image">
             </button>
-    
-            <a href="index.html">
-                <button class="header-button">Home</button>
-            </a>
-            
-            <a href="about.html">
-                <button class="header-button">About</button>
-            </a>
 
-            <a href="projects.html">
-                <button class="header-button">Projects</button>
-            </a>
+            <a href="index.html" class="header-button">Home</a>
+            <a href="about.html" class="header-button">About</a>
+            <a href="projects.html" class="header-button">Projects</a>
+            <a href="contact.html" class="header-button" aria-current="page">Contact</a>
+        </nav>
+    </header>
 
-            <a href="contact.html">
-                <button class="header-button">Contact</button>
-            </a>
-        </div>
-    </div>
-    
-    
-    <div id="page-content">
+    <main id="page-content">
 
         <div class="grid4r1c">
             <a href="mailto:matthew.calora917@gmail.com">
                 <h1>matthew.calora917@gmail.com</h1>
-            </a> 
+            </a>
 
             <a href="https://www.linkedin.com/in/mc917/">
                 <h1>linkedIn</h1>
@@ -56,17 +47,14 @@
                 <h1>Instagram</h1>
             </a>
 
-            <a href="nonImageFiles\Resume New-1.pdf" download>
+            <a href="nonImageFiles/Resume%20New-1.pdf" download>
                 <h1>Download CV / Resume</h1>
             </a>
         </div>
 
-    </div>
-    
-    <footer class="footer">last updated April 28, 2025</footer>
+    </main>
 
-    <script src="app.js"></script>
+    <footer class="footer">last updated October 26, 2026</footer>
 
 </body>
-
 </html>
