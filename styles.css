@@ -258,8 +258,24 @@ a img {
     box-shadow: var(--shadow);
 }
 
-.home-photo {
-    max-width: 420px;
+/* home fits in one screen: name scales with height too, photo capped by what's left */
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: clamp(12px, 3vw, 24px);
+}
+
+.home .name {
+    margin: 0;
+    font-size: clamp(56px, min(18vw, 16vh), 150px);
+}
+
+.home .home-photo {
+    width: auto;
+    max-width: min(420px, 100%);
+    max-height: calc(100vh - 320px);
+    max-height: calc(100dvh - 320px);
 }
 
 /* Education / experience: text + logo pairs */
@@ -516,8 +532,11 @@ a.playlist-link:visited {
         max-width: 240px;
     }
 
-    .home-photo {
-        max-width: 320px;
+    /* stacked under the text here, so leave room for it too */
+    .home .home-photo {
+        max-width: min(320px, 100%);
+        max-height: calc(100vh - 420px);
+        max-height: calc(100dvh - 420px);
     }
 
     /* project collages stay 2-up on phones */
