@@ -274,8 +274,9 @@ a img {
 .home .home-photo {
     width: auto;
     max-width: min(420px, 100%);
-    max-height: calc(100vh - 320px);
-    max-height: calc(100dvh - 320px);
+    /* floor so very short screens (sideways phones) scroll a bit instead of shrinking the photo away */
+    max-height: max(180px, calc(100vh - 320px));
+    max-height: max(180px, calc(100dvh - 320px));
 }
 
 /* Education / experience: text + logo pairs */
@@ -535,8 +536,8 @@ a.playlist-link:visited {
     /* stacked under the text here, so leave room for it too */
     .home .home-photo {
         max-width: min(320px, 100%);
-        max-height: calc(100vh - 420px);
-        max-height: calc(100dvh - 420px);
+        max-height: max(180px, calc(100vh - 420px));
+        max-height: max(180px, calc(100dvh - 420px));
     }
 
     /* project collages stay 2-up on phones */
